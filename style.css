@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#canvasDiv {
+    flex: 1;
+    flex-direction: row;
+    margin: 2%;
+}
+
+#controlDiv {
+    flex: 1;
+    flex-direction: row;
+    margin: 2%;
+}
+

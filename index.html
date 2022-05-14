@@ -5,13 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
-    <canvas id="canvas" width="800" height="800" style="border: 1px solid green;"></canvas></br>
-    <button id="scatterBtn" onclick="drawSierpinski('scatter')">scatter</button>
-    <button id="instantBtn" onclick="drawSierpinski('instant', 1000000);">instant</button>
-    <button id="clearBtn" onclick="drawSierpinski('clear')">clear</button>
+    <div id="canvasDiv">
+        <canvas id="canvas" width="800" height="800" style="border: 1px solid #ddd;"></canvas>
+    </div>
+    <div id="controlDiv">
+        <h2>Controls</h2>
+        <button id="scatterBtn" type="button" class="btn btn-primary" onclick="drawSierpinski('scatter')" onfocus="this.blur()">scatter</button>
+        <button id="instantBtn" class="btn btn-primary" onclick="drawSierpinski('instant', 1000000)" onfocus="this.blur()">instant</button>
+        <button id="clearBtn" class="btn btn-secondary" onclick="drawSierpinski('clear')" onfocus="this.blur()">clear</button>
+    </div>
 
     <script src="main.js"></script>
 </body>
