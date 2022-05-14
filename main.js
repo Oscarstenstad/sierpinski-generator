@@ -13,6 +13,15 @@ function drawPixel (x, y, r, g, b, a) {
     canvasData.data[index + 3] = a;
 }
 
+function clearPixels () {
+    for (let i = 0; i < canvasData.data.length; i+=4){
+        canvasData.data[i] = 255;
+        canvasData.data[i + 1] = 255;
+        canvasData.data[i + 2] = 255;
+    }
+    updateCanvas();
+}
+
 function updateCanvas() {
     ctx.putImageData(canvasData, 0, 0);
 }
@@ -21,20 +30,20 @@ function initTriangle() {
     drawPixel(canvasWidth*0.5, 0, 255, 1, 1, 255);
     drawPixel(0, canvasHeight-1, 255, 1, 1, 255);
     drawPixel(canvasWidth-1, canvasHeight-1, 255, 1, 1, 255);
-
     updateCanvas();
 }
 
-function drawSierpinski(points, time) {
+function drawSierpinski(type, points) {
     initTriangle();
     var triPoint1 = [canvasHeight*0.5, 1];
     var triPoint2 = [1, canvasHeight-2];
     var triPoint3 = [canvasWidth-1, canvasHeight-1];
 
     var tmpPoint = triPoint1;
-    var tmpPointTri =triPoint2;
+    var tmpPointTri = triPoint2;
 
     function newPointGen(){
+       
         var colorR = 1;
         var colorG = 1;
         var colorB = 1;            
@@ -70,12 +79,32 @@ function drawSierpinski(points, time) {
             tmpPointTri = triPoint1;
         }
     }
+
+    var drawTriangle;
+    if (type == "scatter"){
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        clearTimeout(drawTriangle);
+        drawTriangle = setInterval(() => { drawInterval() }, 1);
+        setTimeout(() => {
+            clearInterval(drawTriangle);
+            return;
+        }, 1000);
     
-    for (let i = 0; i<points; i++) {
-        newPointGen();
+        function drawInterval() {
+            for (let i = 0; i<100; i++){
+                newPointGen();
+            }
+            updateCanvas();
+        }
     }
-    updateCanvas();
-
+    else if(type == "instant") {
+        for (let i = 0; i<points; i++){
+            newPointGen();
+        }
+        updateCanvas();
+        return;
+    }
+    else if (type == "clear"){
+        clearPixels();    
+    }
 }
-
-drawSierpinski(1000000);
