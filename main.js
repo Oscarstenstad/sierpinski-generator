@@ -62,7 +62,7 @@ function drawSierpinski(type, points) {
         }
         lastType = "scatter";
         var drawTriangle = setInterval(() => { drawInterval() }, 1);
-        setTimeout(() => { clearInterval(drawTriangle) }, 1000);
+        setTimeout(() => { clearInterval(drawTriangle) }, 2000);
     
         function drawInterval() {
             for (let i = 0; i<100; i++) newPointGen();
